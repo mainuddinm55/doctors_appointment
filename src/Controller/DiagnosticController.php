@@ -14,7 +14,9 @@ class DiagnosticController
     function getDiagnostic(int $id)
     {
         $client = DbConnection::dbConnect();
-        $statement = $client->prepare("SELECT * FROM diagnostic WHERE id = :id");
+        $statement = $client->prepare(
+            "SELECT * FROM diagnostic WHERE id = :id"
+        );
         $statement->bindParam("id", $id);
         $statement->execute();
         $diagnostic = $statement->fetch(PDO::FETCH_ASSOC);

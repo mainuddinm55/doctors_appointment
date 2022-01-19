@@ -47,7 +47,9 @@ class LocationController
             throw new Exception("District field required");
         }
         $client = DbConnection::dbConnect();
-        $statement = $client->prepare("INSERT INTO location(divistion, district, street_address) VALUES (:division,:district,:street_address)");
+        $statement = $client->prepare(
+            "INSERT INTO location(divistion, district, street_address) VALUES (:division,:district,:street_address)"
+        );
         $statement->bindParam("division", $division);
         $statement->bindParam("district", $district);
         $statement->bindParam("street_address", $streetAddress);
@@ -56,7 +58,6 @@ class LocationController
         $location = $this->getLocation($lastInsertId);
         DbConnection::dbClose();
         return $location;
-
     }
 
     /**
@@ -74,7 +75,9 @@ class LocationController
             throw new Exception("District field required");
         }
         $client = DbConnection::dbConnect();
-        $statement = $client->prepare("UPDATE location SET divistion = :division, district = :district, street_address=:street_address WHERE id = :id");
+        $statement = $client->prepare(
+            "UPDATE location SET divistion = :division, district = :district, street_address=:street_address WHERE id = :id"
+        );
         $statement->bindParam("division", $division);
         $statement->bindParam("district", $district);
         $statement->bindParam("street_address", $streetAddress);
