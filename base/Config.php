@@ -1,6 +1,7 @@
 <?php
 
-namespace DoctorAppointment\Config;
+namespace app\base;
+
 class Config
 {
     const DATABASE_HOST = "127.0.0.1";

@@ -1,15 +1,39 @@
 <?php
 
-namespace DoctorAppointment\Controller;
+namespace app\models;
 
-use DoctorAppointment\DB\DbConnection;
+use app\base\DbConnection;
+use app\base\Model;
 use Exception;
 use PDO;
 
-class UserController
+class UserModel extends Model
 {
-    public function __construct()
+
+    public string $email;
+    public string $password;
+    public string $type = 'user';
+
+    public function rules(): array
     {
+        return [
+            'email'    => [self::RULE_REQUIRED, self::RULE_EMAIL],
+            'password' => [self::RULE_REQUIRED]
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return ['email', 'password', 'type'];
+    }
+
+    public function labels(): array
+    {
+        return [
+            'email'    => 'Email',
+            'password' => 'Password',
+            'type'     => "Type"
+        ];
     }
 
     /**
@@ -18,7 +42,9 @@ class UserController
     function getUserByEmail(string $email)
     {
         $client = DbConnection::dbConnect();
-        $statement = $client->prepare("SELECT * FROM user WHERE email = :email");
+        $statement = $client->prepare(
+            "SELECT * FROM user WHERE email = :email"
+        );
         $statement->bindParam(":email", $email);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -55,7 +81,9 @@ class UserController
     {
         $md5Password = md5($password);
         $client = DbConnection::dbConnect();
-        $statement = $client->prepare("INSERT INTO user (type, email, password) VALUES (:type,:email,:password)");
+        $statement = $client->prepare(
+            "INSERT INTO user (type, email, password) VALUES (:type,:email,:password)"
+        );
         $statement->bindParam(":type", $type);
         $statement->bindParam(":email", $email);
         $statement->bindParam(":password", $md5Password);

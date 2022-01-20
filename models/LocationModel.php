@@ -1,13 +1,40 @@
 <?php
 
-namespace DoctorAppointment\Controller;
+namespace app\models;
 
-use DoctorAppointment\DB\DbConnection;
+use app\base\DbConnection;
+use app\base\Model;
 use Exception;
 use PDO;
 
-class LocationController
+class LocationModel extends Model
 {
+    public string $division;
+    public string $district;
+    public string $street_address;
+
+
+    public function attributes(): array
+    {
+        return ['division', 'district', 'street_address'];
+    }
+
+    public function labels(): array
+    {
+        return [
+            'division'       => "Division",
+            'district'       => "District",
+            'street_address' => "Street Address"
+        ];
+    }
+
+    public function rules(): array
+    {
+        return [
+            'division' => [self::RULE_REQUIRED],
+        ];
+    }
+
     /**
      * @throws Exception
      */
@@ -95,7 +122,7 @@ class LocationController
     /**
      * @throws Exception
      */
-    function deleteLocation(int $id)
+    function deleteLocation(int $id): string
     {
         if ($id <= 0) {
             return "Invalid location id";

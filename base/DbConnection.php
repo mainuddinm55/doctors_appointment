@@ -1,15 +1,14 @@
 <?php
 
-namespace DoctorAppointment\DB;
+namespace app\base;
 
-use DoctorAppointment\Config\Config;
 use Exception;
 use PDO;
 
 class DbConnection
 {
 
-    private static $dbClient;
+    private static ?PDO $dbClient;
 
     /**
      * @throws Exception
@@ -25,7 +24,10 @@ class DbConnection
                 Config::DATABASE_USER_NAME,
                 Config::DATABASE_PASSWORD
             );
-            self::$dbClient->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            self::$dbClient->setAttribute(
+                PDO::ATTR_ERRMODE,
+                PDO::ERRMODE_EXCEPTION
+            );
         } catch (Exception $exception) {
             self::$dbClient = null;
         }
