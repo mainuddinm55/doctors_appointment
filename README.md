@@ -24,7 +24,8 @@ composer install
 # Run
 
 <hr />
-Must have available `php` command with environment PATH variable
+
+Must have available `php` command available  with environment PATH variable
 
 ```
 cd public

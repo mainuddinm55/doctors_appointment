@@ -12,13 +12,15 @@ class UserModel extends Model
 
     public string $email;
     public string $password;
+    public string $confirm_password;
     public string $type = 'user';
 
     public function rules(): array
     {
         return [
-            'email'    => [self::RULE_REQUIRED, self::RULE_EMAIL],
-            'password' => [self::RULE_REQUIRED]
+            'email'            => [self::RULE_REQUIRED, self::RULE_EMAIL],
+            'password'         => [self::RULE_REQUIRED],
+            'confirm_password' => [self::RULE_REQUIRED],
         ];
     }
 
@@ -30,9 +32,10 @@ class UserModel extends Model
     public function labels(): array
     {
         return [
-            'email'    => 'Email',
-            'password' => 'Password',
-            'type'     => "Type"
+            'email'            => 'Email',
+            'password'         => 'Password',
+            'confirm_password' => 'Confirm Password',
+            'type'             => "Type"
         ];
     }
 
@@ -97,13 +100,17 @@ class UserModel extends Model
     /**
      * @throws Exception
      */
-    function registration($email, $password, $type = 'user')
+    function registration()
     {
-        $user = $this->getUserByEmail($email);
+        $user = $this->getUserByEmail($this->email);
         if (isset($user)) {
             throw new Exception("Already registered");
         } else {
-            return $this->createUser($email, $password, $type);
+            return $this->createUser(
+                $this->email,
+                $this->password,
+                $this->type
+            );
         }
     }
 
