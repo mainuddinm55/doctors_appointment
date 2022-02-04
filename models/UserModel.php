@@ -117,11 +117,11 @@ class UserModel extends Model
     /**
      * @throws Exception
      */
-    function login($email, $password)
+    function login()
     {
-        $existingUser = $this->getUserByEmail($email);
+        $existingUser = $this->getUserByEmail($this->email);
         if (isset($existingUser)) {
-            $encryptPassword = md5($password);
+            $encryptPassword = md5($this->password);
             if ($encryptPassword == $existingUser['password']) {
                 return $existingUser;
             } else {

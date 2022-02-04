@@ -15,27 +15,31 @@
 </head>
 
 <body>
-<div class="container-sm align-items-center">
+<div class="container-sm justify-content-center col pt-lg-5">
     <h1 align="center">Registration Here</h1>
+    <div style="width: 50%; align-content: center; align-self: center">
 
-    <form action="" method="post">
-        <div class="mb-3 mt-3">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email"
-                   placeholder="Enter email" name="email">
-        </div>
-        <div class="mb-3 mt-3">
-            <label for="password" class="form-label">Password:</label>
-            <input type="password" class="form-control" id="password"
-                   placeholder="Enter password" name="password">
-        </div>
-        <div class="mb-3 mt-3">
-            <label for="password" class="form-label">Confirm Password:</label>
-            <input type="password" class="form-control" id="confirm_password"
-                   placeholder="Confirm password" name="confirm_password">
-        </div>
-        <button type="submit" class="btn btn-primary">Registration</button>
-    </form>
+        <form action="" method="post">
+            <div class="mb-3 mt-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email"
+                       placeholder="Enter email" name="email">
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="password"
+                       placeholder="Enter password" name="password">
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="password" class="form-label">Confirm
+                    Password:</label>
+                <input type="password" class="form-control"
+                       id="confirm_password"
+                       placeholder="Confirm password" name="confirm_password">
+            </div>
+            <button type="submit" class="btn btn-primary">Registration</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

@@ -10,4 +10,10 @@ class HomeController extends Controller
     {
         return $this->render('home');
     }
+
+    public function dashboard()
+    {
+        var_dump($user);
+        $this->render("dashboard", ["user" => $user]);
+    }
 }
